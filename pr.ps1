@@ -38,12 +38,15 @@ function choco {
 
 # install winget
 # $ProgressPreference='Silent'
-Invoke-WebRequest -Uri https://github.com/microsoft/winget-cli/releases/download/v1.3.2691/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle -OutFile .\MicrosoftDesktopAppInstaller_8wekyb3d8bbwe.msixbundle
+Write-Host "Download winget"
+Invoke-WebRequest -Uri https://github.com/microsoft/winget-cli/releases/download/v1.4.10052/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle -OutFile .\MicrosoftDesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 Invoke-WebRequest -Uri https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx -OutFile Microsoft.VCLibs.x64.14.00.Desktop.appx
+Write-Host "Install winget"
 Add-AppxPackage Microsoft.VCLibs.x64.14.00.Desktop.appx
 Add-AppxPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 
 # install adk
+Write-Host "Download adk"
 $artifactUrl = 'https://download.microsoft.com/download/0/1/C/01CC78AA-B53B-4884-B7EA-74F2878AA79F/adk/adksetup.exe' # v1809
 $artifactPath = "$env:TEMP\$(Split-Path -Leaf $artifactUrl)"
 
@@ -60,10 +63,12 @@ Install-ChocolateyShortcut `
     -TargetPath 'C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\WSIM\imgmgr.exe'
 
 # install carbon.
+Write-Host "Install carbon"
 choco install -y carbon
 Import-Module Carbon
 
 # install git and related applications.
+Write-Host "Install git"
 choco install -y git --params '/GitOnlyOnPath /NoAutoCrlf /SChannel'
 choco install -y gitextensions
 choco install -y meld
@@ -87,6 +92,9 @@ git config --global merge.tool meld
 git config --global mergetool.meld.path 'C:/Program Files (x86)/Meld/Meld.exe'
 git config --global mergetool.meld.cmd '\"C:/Program Files (x86)/Meld/Meld.exe\" \"$LOCAL\" \"$BASE\" \"$REMOTE\" --auto-merge --output \"$MERGED\"'
 
+Write-Host "Install pwsh"
 winget install --id Microsoft.Powershell --source winget
+Write-Host "Install dotnet"
 winget install Microsoft.DotNet.SDK.7
+Write-Host "Install wix"
 dotnet tool install --global wix --version 4.0.0-rc.1
