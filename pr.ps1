@@ -39,7 +39,7 @@ function choco {
 # install winget
 # $ProgressPreference='Silent'
 Write-Host "Download winget"
-Invoke-WebRequest -Uri https://github.com/microsoft/winget-cli/releases/download/v1.4.10052/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle -OutFile c:\Windows\System32\MicrosoftDesktopAppInstaller_8wekyb3d8bbwe.msixbundle
+Invoke-WebRequest -Uri https://github.com/microsoft/winget-cli/releases/download/v1.4.10052/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle -OutFile Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 Invoke-WebRequest -Uri https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx -OutFile Microsoft.VCLibs.x64.14.00.Desktop.appx
 Write-Host "Install winget"
 Add-AppxPackage Microsoft.VCLibs.x64.14.00.Desktop.appx
