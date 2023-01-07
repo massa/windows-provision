@@ -39,9 +39,9 @@ function choco {
 # install winget
 # $ProgressPreference='Silent'
 Write-Host "Download dotnet script"
-Invoke-WebRequest -Uri https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.ps1 -OutFile C:\tmp\dotnet-install.ps1
+Invoke-WebRequest -Uri https://download.visualstudio.microsoft.com/download/pr/35660869-0942-4c5d-8692-6e0d4040137a/4921a36b578d8358dac4c27598519832/dotnet-sdk-7.0.101-win-x64.exe -OutFile C:\tmp\dotnet.exe
 Write-Host "Install dotnet via script"
-&C:\tmp\dotnet-install.ps1
+&C:\tmp\dotnet.exe /install /passive /norestart /log log.txt
 
 Write-Host "Download winget"
 Invoke-WebRequest -Uri https://github.com/microsoft/winget-cli/releases/download/v1.3.2091/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle -OutFile C:\Windows\system32\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
