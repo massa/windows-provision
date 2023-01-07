@@ -41,14 +41,16 @@ function choco {
 Write-Host "Download dotnet script"
 Invoke-WebRequest -Uri https://download.visualstudio.microsoft.com/download/pr/35660869-0942-4c5d-8692-6e0d4040137a/4921a36b578d8358dac4c27598519832/dotnet-sdk-7.0.101-win-x64.exe -OutFile C:\tmp\dotnet.exe
 Write-Host "Install dotnet via script"
-&C:\tmp\dotnet.exe /install /passive /norestart /log log.txt
+& 'C:\tmp\dotnet.exe' /install /passive /log log.txt
 
 Write-Host "Download winget"
+Invoke-WebRequest -Uri http://tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/cadae296-3389-40c2-b927-605f7b399b78?P1=1673125431&P2=404&P3=2&P4=XWRMiqSVWKTVHCAZjQLT1ATHJwOSzMDBoXLh7t04fEL4VnO5omBRp%2fqwiJ9Z4oBvZTH7jiTj17LTLqjSDqGPxQ%3d%3d -OutFile Microsoft.UI.Xaml.2.7_7.2109.13004.0_x64__8wekyb3d8bbwe.Appx
 Invoke-WebRequest -Uri https://github.com/microsoft/winget-cli/releases/download/v1.3.2091/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle -OutFile C:\Windows\system32\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 Invoke-WebRequest -Uri https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx -OutFile Microsoft.VCLibs.x64.14.00.Desktop.appx
 Write-Host "Install winget"
-&"C:\Program Files\dotnet\dotnet.exe" add package Microsoft.UI.Xaml --version 2.7.3
+& 'C:\Program Files\dotnet\dotnet.exe' add package Microsoft.UI.Xaml --version 2.7.3
 Add-AppxPackage Microsoft.VCLibs.x64.14.00.Desktop.appx
+Add-AppxPackage Microsoft.UI.Xaml.2.7_7.2109.13004.0_x64__8wekyb3d8bbwe.Appx
 Add-AppxPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 
 # install adk
