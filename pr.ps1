@@ -38,10 +38,16 @@ function choco {
 
 # install winget
 # $ProgressPreference='Silent'
+Write-Host "Download dotnet script"
+Invoke-WebRequest -Uri https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.ps1 -OutFile C:\tmp\dotnet-install.ps1
+Write-Host "Install dotnet via script"
+&C:\tmp\dotnet-install.ps1
+
 Write-Host "Download winget"
 Invoke-WebRequest -Uri https://github.com/microsoft/winget-cli/releases/download/v1.3.2091/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle -OutFile C:\Windows\system32\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 Invoke-WebRequest -Uri https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx -OutFile Microsoft.VCLibs.x64.14.00.Desktop.appx
 Write-Host "Install winget"
+dotnet add package Microsoft.UI.Xaml --version 2.7.2
 Add-AppxPackage Microsoft.VCLibs.x64.14.00.Desktop.appx
 Add-AppxPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 
@@ -93,7 +99,6 @@ git config --global mergetool.meld.cmd '\"C:/Program Files (x86)/Meld/Meld.exe\"
 
 Write-Host "Install pwsh"
 winget install --id Microsoft.Powershell --source winget
-Write-Host "Install dotnet"
-winget install Microsoft.DotNet.SDK.7
+
 Write-Host "Install wix"
 dotnet tool install --global wix --version 4.0.0-rc.1
