@@ -47,7 +47,7 @@ Write-Host "Download winget"
 Invoke-WebRequest -Uri https://github.com/microsoft/winget-cli/releases/download/v1.3.2091/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle -OutFile C:\Windows\system32\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 Invoke-WebRequest -Uri https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx -OutFile Microsoft.VCLibs.x64.14.00.Desktop.appx
 Write-Host "Install winget"
-dotnet add package Microsoft.UI.Xaml --version 2.7.2
+&"C:\Program Files\dotnet\dotnet.exe" add package Microsoft.UI.Xaml --version 2.7.3
 Add-AppxPackage Microsoft.VCLibs.x64.14.00.Desktop.appx
 Add-AppxPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 
@@ -101,4 +101,4 @@ Write-Host "Install pwsh"
 winget install --id Microsoft.Powershell --source winget
 
 Write-Host "Install wix"
-dotnet tool install --global wix --version 4.0.0-rc.1
+&"C:\Program Files\dotnet.exe" tool install --global wix --version 4.0.0-rc.1
