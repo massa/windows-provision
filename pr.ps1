@@ -69,7 +69,6 @@ Import-Module Carbon
 
 # install git and related applications.
 Write-Host "Install git"
-choco install -y git --params '/GitOnlyOnPath /NoAutoCrlf /SChannel'
 choco install -y gitextensions
 choco install -y meld
 
