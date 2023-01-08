@@ -37,14 +37,13 @@ function choco {
 }
 
 # install spice
-Write-Host "Download spice"
-Invoke-WebRequest -Uri https://www.spice-space.org/download/windows/spice-guest-tools/spice-guest-tools-latest.exe -o C:\tmp\spice.exe
 Write-Host "Install spice"
-& C:\tmp\spice.exe /S
-
+choco install -y spice-agent
 
 # install winget
 # $ProgressPreference='Silent'
+Set-Variable DOTNET_CLI_TELEMETRY_OPTOUT=true
+
 Write-Host "Download dotnet script"
 Invoke-WebRequest -Uri https://download.visualstudio.microsoft.com/download/pr/35660869-0942-4c5d-8692-6e0d4040137a/4921a36b578d8358dac4c27598519832/dotnet-sdk-7.0.101-win-x64.exe -OutFile C:\tmp\dotnet.exe
 Write-Host "Install dotnet via script"
@@ -106,7 +105,7 @@ git config --global merge.tool meld
 git config --global mergetool.meld.path 'C:/Program Files (x86)/Meld/Meld.exe'
 git config --global mergetool.meld.cmd '\"C:/Program Files (x86)/Meld/Meld.exe\" \"$LOCAL\" \"$BASE\" \"$REMOTE\" --auto-merge --output \"$MERGED\"'
 
-Set-DnsClientGloballSetting -SuffixSearchList @("almg.uucp", "almg.rede", "almg.gov.br")
+Set-DnsClientGlobalSetting -SuffixSearchList @("almg.uucp", "almg.rede", "almg.gov.br")
 
 Write-Host "Install pwsh"
 & "C:\Program Files\dotnet\dotnet.exe" tool install --global PowerShell
