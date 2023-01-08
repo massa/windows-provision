@@ -40,7 +40,7 @@ function choco {
 Write-Host "Download spice"
 Invoke-WebRequest -Uri https://www.spice-space.org/download/windows/spice-guest-tools/spice-guest-tools-latest.exe -o C:\tmp\spice.exe
 Write-Host "Install spice"
-& C:\tmp\spice.txt /S
+& C:\tmp\spice.exe /S
 
 
 # install winget
