@@ -36,6 +36,13 @@ function choco {
     Start-Choco $Args
 }
 
+# install spice
+Write-Host "Download spice"
+Invoke-WebRequest -Uri https://www.spice-space.org/download/windows/spice-guest-tools/spice-guest-tools-latest.exe -o C:\tmp\spice.exe
+Write-Host "Install spice"
+& C:\tmp\spice.txt /S
+
+
 # install winget
 # $ProgressPreference='Silent'
 Write-Host "Download dotnet script"
@@ -99,8 +106,12 @@ git config --global merge.tool meld
 git config --global mergetool.meld.path 'C:/Program Files (x86)/Meld/Meld.exe'
 git config --global mergetool.meld.cmd '\"C:/Program Files (x86)/Meld/Meld.exe\" \"$LOCAL\" \"$BASE\" \"$REMOTE\" --auto-merge --output \"$MERGED\"'
 
+Set-DnsClientGloballSetting -SuffixSearchList @("almg.uucp", "almg.rede", "almg.gov.br")
+
 Write-Host "Install pwsh"
-&"C:\Program Files\dotnet.exe" tool install --global PowerShell
+& "C:\Program Files\dotnet\dotnet.exe" tool install --global PowerShell
 
 Write-Host "Install wix"
-&"C:\Program Files\dotnet.exe" tool install --global wix --version 4.0.0-rc.1
+& "C:\Program Files\dotnet\dotnet.exe" tool install --global wix --version 4.0.0-rc.1
+
+
